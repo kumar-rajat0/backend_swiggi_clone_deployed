@@ -12,6 +12,6 @@ export default function restaurantRoute(app){
 
     app.get("/api/swiggy-restaurants", getSwiggyRestaurants);
 
-     app.get("/api/swiggy-menu/:id", getRestaurantMenu);
+    //  app.get("/api/swiggy-menu/:id", getRestaurantMenu);
 
 }

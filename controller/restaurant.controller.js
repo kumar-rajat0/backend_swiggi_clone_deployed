@@ -74,9 +74,59 @@ export async function getSwiggyRestaurants(req, res) {
 }
 
 //Menu controller
+
 export async function getRestaurantMenu(req, res) {
-  res.json({
-    ok: true,
-    message: "menu route working"
-  });
+  try {
+    const menuData = {
+      data: {
+        cards: [
+          {
+            card: {
+              card: {
+                itemCards: [
+                  {
+                    card: {
+                      info: {
+                        id: "1",
+                        name: "Margherita Pizza",
+                        price: 25000,
+                        category: "Pizza",
+                        imageId: ""
+                      }
+                    }
+                  },
+                  {
+                    card: {
+                      info: {
+                        id: "2",
+                        name: "Veg Burger",
+                        price: 12000,
+                        category: "Burger",
+                        imageId: ""
+                      }
+                    }
+                  },
+                  {
+                    card: {
+                      info: {
+                        id: "3",
+                        name: "Cold Coffee",
+                        price: 8000,
+                        category: "Drinks",
+                        imageId: ""
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    };
+
+    return res.status(200).json(menuData);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
 }

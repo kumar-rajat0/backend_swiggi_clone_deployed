@@ -1,4 +1,4 @@
-import createRestaurant, { deleteRestaurant, fetchRestaurants, updateRestaurant ,getRestaurantMenu,  getSwiggyRestaurants} from "../controller/restaurant.controller.js";
+import createRestaurant, { deleteRestaurant, fetchRestaurants, updateRestaurant ,  getSwiggyRestaurants, getRestaurantMenu} from "../controller/restaurant.controller.js";
 import { verifyTOken } from "../middleware/verifyToken.js";
 
 export default function restaurantRoute(app){

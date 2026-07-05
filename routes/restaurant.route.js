@@ -9,4 +9,5 @@ export default function restaurantRoute(app){
     app.patch('/api/restaurant/:id' ,updateRestaurant )
 
     app.delete('/api/restaurant/:id' ,  deleteRestaurant)
+
 }

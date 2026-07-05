@@ -1,7 +1,7 @@
 import express from "express"
 import restaurantRoute from "./routes/restaurant.route.js"
 import cors from 'cors'
-
+import axios from "axios";
 const app = express()
 
 
@@ -26,6 +26,23 @@ app.use('/sam',(req,res,next)=>{
 app.get("/",(req,res)=>{
     res.send("hello rajat")
 })
+app.get("/api/swiggy-restaurants", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=29.69230&lng=76.98600&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+      {
+        headers: {
+          "User-Agent": "Mozilla/5.0",
+        },
+      }
+    );
+
+    res.json(response.data);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
 app.get("/sam",(req,res)=>{
     res.send("hello sam")
 })

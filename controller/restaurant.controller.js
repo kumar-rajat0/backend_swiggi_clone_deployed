@@ -59,3 +59,4 @@ export  async function deleteRestaurant(req,res){
 return res.status(500).json({"errorMes":err})
 }
 }
+

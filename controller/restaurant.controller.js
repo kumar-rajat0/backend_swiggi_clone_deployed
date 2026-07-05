@@ -72,3 +72,11 @@ export async function getSwiggyRestaurants(req, res) {
     return res.status(500).json({ error: err.message });
   }
 }
+
+//Menu controller
+export async function getRestaurantMenu(req, res) {
+  res.json({
+    ok: true,
+    message: "menu route working"
+  });
+}

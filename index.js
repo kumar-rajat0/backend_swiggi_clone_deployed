@@ -47,7 +47,7 @@ app.get("/sam",(req,res)=>{
     res.send("hello sam")
 })
 
-restaurantRoute(app)
+restaurantRoute(app);
 userRoute(app)
 const Port = 8080
 app.listen(Port,()=>{

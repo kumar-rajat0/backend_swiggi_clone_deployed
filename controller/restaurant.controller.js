@@ -74,6 +74,7 @@ export async function getSwiggyRestaurants(req, res) {
 }
 
 //Menu controller
+
 export async function getRestaurantMenu(req, res) {
   try {
     const { id } = req.params;
@@ -91,10 +92,14 @@ export async function getRestaurantMenu(req, res) {
 
     const data = response.data;
 
-    // 🔥 DEBUG (VERY IMPORTANT)
+    if (!data) {
+      return res.status(404).json({ message: "No data from Swiggy" });
+    }
+
     console.log("MENU FOR ID:", id);
 
     return res.status(200).json(data);
+
   } catch (err) {
     console.log("ERROR:", err.message);
     return res.status(500).json({ error: err.message });

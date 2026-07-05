@@ -1,5 +1,5 @@
 import RestaurantModel from "../Models/Restaurant.model.js"
-
+import axios from "axios";
 //Create 
 export default async function createRestaurant(req,res){
 const{name,imageUrl,rating,cuisines,deliveryTime} = req.body
@@ -60,3 +60,15 @@ return res.status(500).json({"errorMes":err})
 }
 }
 
+
+export async function getSwiggyRestaurants(req, res) {
+  try {
+    const response = await axios.get(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=29.69230&lng=76.98600&page_type=DESKTOP_WEB_LISTING"
+    );
+
+    return res.status(200).json(response.data);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}

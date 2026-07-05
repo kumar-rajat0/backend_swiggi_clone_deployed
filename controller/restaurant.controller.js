@@ -74,59 +74,29 @@ export async function getSwiggyRestaurants(req, res) {
 }
 
 //Menu controller
-
 export async function getRestaurantMenu(req, res) {
   try {
-    const menuData = {
-      data: {
-        cards: [
-          {
-            card: {
-              card: {
-                itemCards: [
-                  {
-                    card: {
-                      info: {
-                        id: "1",
-                        name: "Margherita Pizza",
-                        price: 25000,
-                        category: "Pizza",
-                        imageId: ""
-                      }
-                    }
-                  },
-                  {
-                    card: {
-                      info: {
-                        id: "2",
-                        name: "Veg Burger",
-                        price: 12000,
-                        category: "Burger",
-                        imageId: ""
-                      }
-                    }
-                  },
-                  {
-                    card: {
-                      info: {
-                        id: "3",
-                        name: "Cold Coffee",
-                        price: 8000,
-                        category: "Drinks",
-                        imageId: ""
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      }
-    };
+    const { id } = req.params;
 
-    return res.status(200).json(menuData);
+    const response = await axios.get(
+      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=29.69230&lng=76.98600&restaurantId=${id}`,
+      {
+        headers: {
+          "User-Agent": "Mozilla/5.0",
+          "Accept": "application/json",
+          "Referer": "https://www.swiggy.com/"
+        }
+      }
+    );
+
+    const data = response.data;
+
+    // 🔥 DEBUG (VERY IMPORTANT)
+    console.log("MENU FOR ID:", id);
+
+    return res.status(200).json(data);
   } catch (err) {
+    console.log("ERROR:", err.message);
     return res.status(500).json({ error: err.message });
   }
 }
